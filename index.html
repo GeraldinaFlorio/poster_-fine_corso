@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capitalismo e Disabilità - Poster Interattivo</title>
+    <title>Poster Interattivo - Capitalismo e Disabilità</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,13 +19,12 @@
         h1 {
             color: #2c3e50;
             margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 24px;
+            font-size: 26px;
             text-align: center;
+            text-transform: uppercase;
         }
 
-        p.subtitle {
+        .subtitle {
             color: #7f8c8d;
             margin-top: 0;
             margin-bottom: 25px;
@@ -33,18 +32,18 @@
             text-align: center;
         }
 
-        /* Contenitore responsivo per il poster */
-        .poster-wrapper {
+        /* Box contenitore del poster per gestire ombreggiatura e bordi */
+        .poster-container {
             max-width: 100%;
-            width: 900px;
+            width: 850px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             border-radius: 8px;
             overflow: hidden;
             background: #fff;
-            line-height: 0; /* Rimuove lo spazio bianco sotto l'immagine */
+            line-height: 0;
         }
 
-        .poster-wrapper img {
+        .poster-container img {
             width: 100%;
             height: auto;
             display: block;
@@ -52,12 +51,16 @@
             box-sizing: border-box;
         }
 
-        /* Istruzioni per l'utente */
-        .info-text {
+        .info-note {
             margin-top: 15px;
             font-size: 14px;
-            color: #555;
+            color: #7f8c8d;
             text-align: center;
+        }
+
+        /* Cambia l'aspetto del puntatore del mouse quando passa sulle aree interattive */
+        area {
+            cursor: pointer;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/imageMapResizer.min.js"></script>
@@ -65,28 +68,28 @@
 <body>
 
     <h1>Capitalismo e Disabilità</h1>
-    <p class="subtitle">Analisi Critica ed Esegesi Politico-Economica</p>
+    <p class="subtitle">Navigazione Interattiva del Poster</p>
 
-    <div class="poster-wrapper">
-        <img src="poster_principale.jpg" usemap="#poster-map" alt="Poster Capitalismo e Disabilità">
+    <div class="poster-container">
+        <img src="Poster con monete.jpg" usemap="#poster-map" alt="Poster con monete">
         
         <map name="poster-map">
-            <area shape="rect" coords="0,0,450,300" href="1. La fabbrica della disabilità.jpg" target="_blank" alt="La fabbrica della disabilità" title="Apri: La fabbrica della disabilità">
+            <area shape="rect" coords="0,0,425,270" href="1. La fabbrica della disabilità.jpg" target="_blank" alt="La fabbrica della disabilità" title="Apri: 1. La fabbrica della disabilità">
             
-            <area shape="rect" coords="450,0,900,300" href="2. Il disability business.jpg" target="_blank" alt="Il disability business" title="Apri: Il disability business">
+            <area shape="rect" coords="425,0,850,270" href="2. Il disability business.jpg" target="_blank" alt="Il disability business" title="Apri: 2. Il disability business">
             
-            <area shape="rect" coords="0,300,450,530" href="3. L'illusione dei diritti.jpg" target="_blank" alt="L'illusione dei diritti" title="Apri: L'illusione dei diritti">
+            <area shape="rect" coords="0,270,425,510" href="3. L'illusione dei diritti.jpg" target="_blank" alt="L'illusione dei diritti" title="Apri: 3. L'illusione dei diritti">
             
-            <area shape="rect" coords="450,300,900,530" href="4. Oltre la normalizzazione.jpg" target="_blank" alt="Oltre la normalizzazione" title="Apri: Oltre la normalizzazione">
+            <area shape="rect" coords="425,270,850,510" href="4. Oltre la normalizzazione.jpg" target="_blank" alt="Oltre la normalizzazione" title="Apri: 4. Oltre la normalizzazione">
             
-            <area shape="rect" coords="0,530,900,600" href="link-al-tuo-file-audio.mp3" target="_blank" alt="Intervista Ironadia_301" title="Ascolta l'intervista a IRONADIA_301">
+            <area shape="rect" coords="0,510,850,600" href="#" target="_blank" alt="Intervista TikToker" title="Ascolta l'intervista alla TikToker IRONADIA_301">
         </map>
     </div>
 
-    <p class="info-text">💡 <em>Passa il mouse sopra le diverse sezioni del poster e clicca per ingrandire i capitoli o ascoltare l'audio.</em></p>
+    <p class="info-note">💡 <em>Passa con il mouse sulle sezioni del poster e fai click per ingrandire i pannelli o attivare i contenuti.</em></p>
 
     <script>
-        // Inizializza il plugin per fare in modo che le coordinate si adattino automaticamente se la pagina viene ridimensionata
+        // Avvia il ridimensionamento dinamico della mappa all'avvio della pagina
         document.addEventListener("DOMContentLoaded", function() {
             imageMapResize();
         });
