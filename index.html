@@ -1,33 +1,96 @@
-import cv2
-import numpy as np
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitalismo e Disabilità - Poster Interattivo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
 
-# Let's inspect the shapes of the images to build a nice layout
-# We will create an HTML file that renders the main poster image (or an interactive layout resembling it)
-# and maps the click areas (image maps or positioned transparent anchors) over the corresponding areas.
-# Wait, the user wants a single HTML page containing the main image from the PDF or layout mimicking the poster.
-# The PDF page 1 contains three images (top left, top right, bottom/middle).
-# Let's see how we can embed this elegantly. Since we don't have the original single poster image as a standalone file,
-# we can reconstruct the poster layout using the 3 images inside the PDF or provide a clean HTML structure with an image map or responsive divs.
-# Wait, let's look at page 1 of the PDF. It has 3 visual rows:
-# 1. IL DISABILITY BUSINESS (Scale, RSA)
-# 2. LA FABBRICA DELLA DISABILITÀ (Factory conveyor belt)
-# 3. OLTRE LA NORMALIZZAZIONE (Fist, worker and person in wheelchair shaking hands)
-# And the user mentions four "francobolli" (stamps/panels) corresponding to the four text chapters:
-# - Top left -> 1. La fabbrica della disabilità
-# - Top right -> 2. Il disability business
-# - Bottom left -> 3. L'illusione dei diritti
-# - Bottom right -> 4. Oltre la normalizzazione
-# - A link for "INTERVISTIAMO LA TIKTOKER"
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 24px;
+            text-align: center;
+        }
 
-# Let's write a python script to generate a beautifully styled, interactive HTML file.
-# The HTML will layout the main poster elements elegantly or use an image map if we extract page 1 as an image.
-# Let's extract page 1 of the PDF as an image so the user can use it as the background or main image!
+        p.subtitle {
+            color: #7f8c8d;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-style: italic;
+            text-align: center;
+        }
 
-from pdf2image import convert_from_path
-import os
+        /* Contenitore responsivo per il poster */
+        .poster-wrapper {
+            max-width: 100%;
+            width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            line-height: 0; /* Rimuove lo spazio bianco sotto l'immagine */
+        }
 
-pdf_path = 'Presentazione Poster con monete.pdf'
-images = convert_from_path(pdf_path)
-images[0].save('poster_principale.jpg', 'JPEG')
+        .poster-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 4px solid #2c3e50;
+            box-sizing: border-box;
+        }
 
-print("Poster image extracted successfully.")
+        /* Istruzioni per l'utente */
+        .info-text {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/imageMapResizer.min.js"></script>
+</head>
+<body>
+
+    <h1>Capitalismo e Disabilità</h1>
+    <p class="subtitle">Analisi Critica ed Esegesi Politico-Economica</p>
+
+    <div class="poster-wrapper">
+        <img src="poster_principale.jpg" usemap="#poster-map" alt="Poster Capitalismo e Disabilità">
+        
+        <map name="poster-map">
+            <area shape="rect" coords="0,0,450,300" href="1. La fabbrica della disabilità.jpg" target="_blank" alt="La fabbrica della disabilità" title="Apri: La fabbrica della disabilità">
+            
+            <area shape="rect" coords="450,0,900,300" href="2. Il disability business.jpg" target="_blank" alt="Il disability business" title="Apri: Il disability business">
+            
+            <area shape="rect" coords="0,300,450,530" href="3. L'illusione dei diritti.jpg" target="_blank" alt="L'illusione dei diritti" title="Apri: L'illusione dei diritti">
+            
+            <area shape="rect" coords="450,300,900,530" href="4. Oltre la normalizzazione.jpg" target="_blank" alt="Oltre la normalizzazione" title="Apri: Oltre la normalizzazione">
+            
+            <area shape="rect" coords="0,530,900,600" href="link-al-tuo-file-audio.mp3" target="_blank" alt="Intervista Ironadia_301" title="Ascolta l'intervista a IRONADIA_301">
+        </map>
+    </div>
+
+    <p class="info-text">💡 <em>Passa il mouse sopra le diverse sezioni del poster e clicca per ingrandire i capitoli o ascoltare l'audio.</em></p>
+
+    <script>
+        // Inizializza il plugin per fare in modo che le coordinate si adattino automaticamente se la pagina viene ridimensionata
+        document.addEventListener("DOMContentLoaded", function() {
+            imageMapResize();
+        });
+    </script>
+
+</body>
+</html>
